@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        
+        <div class="result-card">
+            <h2>Hello, {{ name }}!</h2>
+            <p>Your {{ disease_type|title }} Disease Prediction:</p>
+            
+            <div class="diagnosis {{ 'positive' if 'No' not in diagnosis else 'negative' }}">
+                {{ diagnosis }}
+            </div>
+            
+            <p>Probability: {{ probability }}%</p>
+            
+            <div class="recommendation">
+                {% if 'No' not in diagnosis %}
+                    <p>We recommend consulting with a healthcare professional for further evaluation.</p>
+                {% else %}
+                    <p>No signs detected, but regular checkups are always recommended.</p>
+                {% endif %}
+            </div>
+            
+            <a href="/" class="home-link">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

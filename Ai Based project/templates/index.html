@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('static/images/health-still-life-with-copy-space.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.6);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #34495e;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .disease-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 280px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: #3498db;
+            margin-top: 0;
+        }
+
+        .card p {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+
+        .card-footer {
+            background-color: #3498db;
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI-Based Medical Diagnosis</h1>
+        <p>Select a disease to predict:</p>
+        
+        <div class="disease-cards">
+            <div class="card" onclick="window.location.href='/predict/liver'">
+                <h2>Liver Disease</h2>
+                <p>Predict liver disease based on medical parameters</p>
+                <div class="card-footer">Click to predict</div>
+            </div>
+            
+            <div class="card" onclick="window.location.href='/predict/diabetes'">
+                <h2>Diabetes</h2>
+                <p>Predict diabetes based on medical parameters</p>
+                <div class="card-footer">Click to predict</div>
+            </div>
+            
+            <div class="card" onclick="window.location.href='/predict/heart'">
+                <h2>Heart Disease</h2>
+                <p>Predict heart disease based on medical parameters</p>
+                <div class="card-footer">Click to predict</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

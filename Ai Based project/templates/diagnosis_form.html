@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ disease_type|title }} Disease Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+    <div class="container">
+        <h1>{{ disease_type|title }} Disease Prediction</h1>
+
+        <form action="/diagnose" method="POST">
+            <input type="hidden" name="disease_type" value="{{ disease_type }}">
+
+            {% if disease_type == 'liver' %}
+            <!-- Liver Disease Specific Fields -->
+             '{{ url_for('static', filename='images/liver-bg.jpg') }}'
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="1" max="120" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="total_bilirubin">Total Bilirubin:</label>
+                <input type="number" step="0.1" id="total_bilirubin" name="total_bilirubin" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="direct_bilirubin">Direct Bilirubin:</label>
+                <input type="number" step="0.1" id="direct_bilirubin" name="direct_bilirubin" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="alk_phosphotase">Alkaline Phosphotase (U/L):</label>
+                <input type="number" id="alk_phosphotase" name="alk_phosphotase" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="alamine_aminotransferase">Alamine Aminotransferase (ALT/SGPT)(U/L):</label>
+                <input type="number" id="alamine_aminotransferase" name="alamine_aminotransferase" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="aspartate_aminotransferase">Aspartate Aminotransferase (ASPT/SGOT)(U/L):</label>
+                <input type="number" id="aspartate_aminotransferase" name="aspartate_aminotransferase" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="total_protiens">Total Proteins (g/dL):</label>
+                <input type="number" step="0.1" id="total_protiens" name="total_protiens" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="albumin">Albumin (g/dL):</label>
+                <input type="number" step="0.1" id="albumin" name="albumin" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="albumin_globulin_ratio">Albumin/Globulin Ratio:</label>
+                <input type="number" step="0.1" id="albumin_globulin_ratio" name="albumin_globulin_ratio" min="0"
+                    required>
+            </div>
+
+            {% elif disease_type == 'diabetes' %}
+            <!-- Diabetes Specific Fields -->
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="1" max="120" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="pregnancies">Pregnancies:</label>
+                <input type="number" id="pregnancies" name="pregnancies" min="0" max="20" required>
+            </div>
+
+            <div class="form-group">
+                <label for="glucose">Glucose (mg/dL):</label>
+                <input type="number" id="glucose" name="glucose" min="0" max="300" required>
+            </div>
+
+            <div class="form-group">
+                <label for="blood_pressure">Blood Pressure (mmHg):</label>
+                <input type="number" id="blood_pressure" name="blood_pressure" min="0" max="200" required>
+            </div>
+
+            <div class="form-group">
+                <label for="skin_thickness">Skin Thickness (mm):</label>
+                <input type="number" id="skin_thickness" name="skin_thickness" min="0" max="100" required>
+            </div>
+
+            <div class="form-group">
+                <label for="insulin">Insulin (μU/mL):</label>
+                <input type="number" id="insulin" name="insulin" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bmi">BMI:</label>
+                <input type="number" step="0.1" id="bmi" name="bmi" min="0" max="70" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dpf">Diabetes Pedigree Function:</label>
+                <input type="number" step="0.001" id="dpf" name="dpf" min="0" max="2.5" required>
+            </div>
+
+            {% elif disease_type == 'heart' %}
+            <!-- Heart Disease Specific Fields -->
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="1" max="120" required>
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+                <label for="sex">Gender:</label>
+                <select id="sex" name="sex" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <!-- Chest Pain Type -->
+            <div class="form-group">
+                <label for="cp">Chest Pain Type:</label>
+                <select id="cp" name="cp" required>
+                    <option value="1">Typical Angina</option>
+                    <option value="2">Atypical Angina</option>
+                    <option value="3">Non-anginal Pain</option>
+                    <option value="4">Asymptomatic</option>
+                </select>
+            </div>
+
+            <!-- Resting Blood Pressure -->
+            <div class="form-group">
+                <label for="trestbps">Resting Blood Pressure (mm Hg):</label>
+                <input type="number" id="trestbps" name="trestbps" min="0" max="200" required>
+            </div>
+
+            <!-- Cholesterol -->
+            <div class="form-group">
+                <label for="chol">Serum Cholesterol (mg/dl):</label>
+                <input type="number" id="chol" name="chol" min="0" max="600" required>
+            </div>
+
+            <!-- Fasting Blood Sugar -->
+            <div class="form-group">
+                <label for="fbs">Fasting Blood Sugar &gt; 120 mg/dl:</label>
+                <select id="fbs" name="fbs" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <!-- Resting ECG Results -->
+            <div class="form-group">
+                <label for="restecg">Resting ECG Results:</label>
+                <select id="restecg" name="restecg" required>
+                    <option value="0">Normal</option>
+                    <option value="1">ST-T Wave Abnormality</option>
+                    <option value="2">Left Ventricular Hypertrophy</option>
+                </select>
+            </div>
+
+            <!-- Maximum Heart Rate -->
+            <div class="form-group">
+                <label for="thalach">Maximum Heart Rate Achieved:</label>
+                <input type="number" id="thalach" name="thalach" min="60" max="220" required>
+            </div>
+
+            <!-- Exercise Induced Angina -->
+            <div class="form-group">
+                <label for="exang">Exercise Induced Angina:</label>
+                <select id="exang" name="exang" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <!-- ST Depression (Oldpeak) -->
+            <div class="form-group">
+                <label for="oldpeak">ST Depression Induced by Exercise (Oldpeak):</label>
+                <input type="number" step="0.1" id="oldpeak" name="oldpeak" required>
+            </div>
+
+            <!-- Slope of ST Segment -->
+            <div class="form-group">
+                <label for="slope">Slope of Peak Exercise ST Segment:</label>
+                <select id="slope" name="slope" required>
+                    <option value="0">Upsloping</option>
+                    <option value="1">Flat</option>
+                    <option value="2">Downsloping</option>
+                </select>
+            </div>
+
+            <!-- Number of Major Vessels (CA) -->
+            <div class="form-group">
+                <label for="ca">Number of Major Vessels Colored by Fluoroscopy (0-3):</label>
+                <select id="ca" name="ca" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <!-- Thalassemia -->
+            <div class="form-group">
+                <label for="thal">Thalassemia:</label>
+                <select id="thal" name="thal" required>
+                    <option value="0">Normal</option>
+                    <option value="1">Fixed Defect</option>
+                    <option value="2">Reversible Defect</option>
+                </select>
+            </div>
+
+
+
+
+            {% endif %}
+
+            <button type="submit" class="submit-bt" style=" width: 100px;
+                padding: 10px ;
+                background-color: #4caf50; /* Green */
+                margin-left: 100px;
+                display: block;
+                
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;">
+                Predict
+            </button>
+        </form>
+    </div>
+</body>
+
+</html>
